@@ -8,9 +8,20 @@ import LegalDefinition from './LegalDefinition';
 export  default class Main extends React.Component{
 
 	constructor(props){
-	 	super();
+	 	super(props);
+
+        this.onClick = this.onClick.bind(this);
+
 	}
-     
+
+    onClick(event,props) {
+        event.preventDefault();
+
+        console.log("OnSubmit called");
+        var value = document.getElementById('english').value;
+        console.log(value);
+        props.dispatch(actions.translateWord(value))
+    }
 
 
     render(){
@@ -18,9 +29,9 @@ export  default class Main extends React.Component{
 	 	return(
 	 	    <div>
                 <h1>Legal Word Translator: Get the legal definition about the word you want</h1>
-                <form>
-                    <EnglishInput/>
-                    <Button/>
+                <form action="#">
+                    <EnglishInput id="english"/>
+                    <Button onClick={this.onClick}/>
                 </form>
                 <LegalDefinition/>
 	 	    </div>
