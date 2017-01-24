@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from './Button';
 import EnglishInput from './EnglishInput';
 import LegalDefinition from './LegalDefinition';
+import * as actions from '../action/translateAction';
 
 
 export  default class Main extends React.Component{
@@ -19,8 +20,8 @@ export  default class Main extends React.Component{
 
         console.log("OnSubmit called");
         var value = document.getElementById('english').value;
-        console.log(value);
-        props.dispatch(actions.translateWord(value))
+        console.log(actions);
+        props.dispatch(actions.fetchLegalDefinition(value))
     }
 
 

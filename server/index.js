@@ -4,8 +4,10 @@ const morgan = require('morgan');
 const knex = require('knex')({
     client: 'pg',
     connection: {
-        database: 'LEGALTRANSLATOR'
-    },
+        user: 'thinkful',
+        password:'thinkful',
+        database: 'dictionary'
+    }
 });
 
 const HOST = process.env.HOST;
@@ -19,12 +21,12 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 
 app.get('/translate/:word', function(req,res) {
-console.log(req.params.word);
 
-knex.select('Words', 'Definitions').from('legal_definitions').then(Words => {
-    console.log(Words);
+knex.select('definition').from('legal_translator').where({word:req.params.word}).then(word => {
+    console.log(word);
+    res.send(word);
 });
- res.status(200).send("success");
+
 })
 
 function runServer() {
