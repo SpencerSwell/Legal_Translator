@@ -1,26 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import * as actions from '../action/translateAction';
 import Button from './Button';
 import EnglishInput from './EnglishInput';
-import LegalDefinition from './LegalDefinition';
-import * as actions from '../action/translateAction';
+import {LegalDefinition} from './LegalDefinition';
 
 
-export  default class Main extends React.Component{
+export default class Main extends React.Component{
 
 	constructor(props){
-	 	super(props);
+        super(props);
 
         this.onClick = this.onClick.bind(this);
 
 	}
 
     onClick(event,props) {
+        
         event.preventDefault();
 
-        console.log("OnSubmit called");
         var value = document.getElementById('english').value;
-        console.log(actions);
+        console.log(actions.fetchLegalDefinition);
         props.dispatch(actions.fetchLegalDefinition(value))
     }
 
@@ -39,3 +40,4 @@ export  default class Main extends React.Component{
 	 	);
     }
 }
+

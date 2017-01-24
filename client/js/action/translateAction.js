@@ -1,19 +1,27 @@
 
+	export const FETCHED_LEGAL_DEFINITION = "FETCHED_LEGAL_DEFINITION";
 
-export function fetchLegalDefinition (englishWord) {
+	export function fetchedLegalDefinition (legalDefinition) {
+		type:FETCHED_LEGAL_DEFINITION,
+		legalDefinition
+
+	}
+
+
+export const fetchLegalDefinition = englishWord => dispatch => {
+//	var myRequest = new Request('http://localhost:8081/fewest-guesses', {method: 'POST', body: {"guessCount":"\""+ guessNumber+"\""}});
 	const url = new URL ('http://localhost:8080/translate/'+ englishWord);
 
+
 	return fetch(url).then(response => {
-		// if (response.status < 200 || response.status >= 300) {
-		// 		let error = new Error(response.statusText);
-		// 		error.response = response;
-		// 		throw error;
-		// 	}
+
 		return response.json();
 	}).then(legalDefinition => {
 		console.log(legalDefinition);
-
-		//dispatch synchronous action when completed 
+		return actions.dispatch(fetchedLegalDefinition(legalDefinition));
 	})
 
 }
+
+
+module.exports = {FETCHED_LEGAL_DEFINITION, fetchedLegalDefinition, fetchLegalDefinition};

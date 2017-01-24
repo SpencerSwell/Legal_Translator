@@ -4,9 +4,9 @@ const morgan = require('morgan');
 const knex = require('knex')({
     client: 'pg',
     connection: {
-        user: 'thinkful',
-        password:'thinkful',
-        database: 'dictionary'
+        user: 'postgres',
+        password:'Dev',
+        database: 'LEGALTRANSLATOR'
     }
 });
 
