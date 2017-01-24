@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Cormorant|Vollkor");
+* {
+  color: red; }
+
+body {
+  background-color: #e4d2ba;
+  border: 4px solid black;
+  font-size: 28px;
+  font: "Cormorant", serif; }
+
+/*# sourceMappingURL=thinkful-full-stack-template.map */
