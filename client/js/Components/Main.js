@@ -39,19 +39,23 @@ var value = '';
                     <EnglishInput id="english"/>
                     <Button onClick={this.onClick}/>
                 </form>
-                <LegalDefinition content={this.props.legalDefintion}/>
+                <LegalDefinition word={this.props.Word} content = {this.props.legalDefinition} />
 	 	    </div>
 	 	);
     }
 }
-var fuckIt;
+var now;
 function mapStateToProps (state, props) {
-   
+    
     return {
 
-        legalDefintion:state.legalDefintion
+        legalDefinition:state.legalDefinition,
+        Word:state.Word
     }
+
 }
 
-console.log(fuckIt);
+
+
+
 export default connect(mapStateToProps)(Main);

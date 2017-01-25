@@ -7,7 +7,7 @@ export  function LegalDefinition(props) {
 	return(
 		<div>
 			<p>
-				<dfn id='Person'> Person: </dfn>
+				<dfn id='Person'> {props.word} </dfn>
 
 				{props.content}
 			</p>
@@ -17,13 +17,3 @@ export  function LegalDefinition(props) {
 
 }
 
-function mapStateToProps(state,props) {
-	console.log(state);
-	return {
-		legalDefinition:state.legalDefinition
-
-	};
-
-};
-
-export default connect(mapStateToProps)(LegalDefinition);

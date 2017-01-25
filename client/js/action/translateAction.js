@@ -3,10 +3,11 @@
 
 	export const FETCHED_LEGAL_DEFINITION = "FETCHED_LEGAL_DEFINITION";
 
-	export function fetchedLegalDefinition (legalDefinition) {
+	export function fetchedLegalDefinition (legalDefinition, Word) {
 		return {
 			type:FETCHED_LEGAL_DEFINITION,
-			legalDefinition
+			legalDefinition:legalDefinition,
+			Word:Word
 		}
 
 	}
@@ -25,7 +26,7 @@ export  function fetchLegalDefinition (englishWord) {
 			return response.json();
 		}).then(legalDefinition => {
 			console.log(legalDefinition);
-			return dispatch(fetchedLegalDefinition(legalDefinition));
+			return dispatch(fetchedLegalDefinition(legalDefinition,englishWord));
 			//dispatch synchronous action when completed 
 		})
 	}
