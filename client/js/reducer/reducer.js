@@ -2,18 +2,18 @@ import * as actions from '../action/translateAction';
 
 const initialState = {
 	
-legalDefinition:''
+legalDefinition:'asdf'
 };
 
 export default function mainReducer (state = initialState, action) {
-	var state = {
-		legalDefinition:''
-	};
+	
+
+	
 
 	if(action.type === actions.FETCHED_LEGAL_DEFINITION) {
-
-		state.legalDefinition = action.legalDefinition;
-
+		console.log("REDUCER CALLED");
+		state.legalDefinition = action.legalDefinition[0].definitions;
+		console.log(action.legalDefinition);
 	}
 	return state;
 }

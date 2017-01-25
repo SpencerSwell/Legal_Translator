@@ -1,4 +1,6 @@
 
+
+
 const express = require('express');
 const morgan = require('morgan');
 const knex = require('knex')({
@@ -22,7 +24,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 app.get('/translate/:word', function(req,res) {
 
-knex.select('definition').from('legal_translator').where({word:req.params.word}).then(word => {
+knex.select('definitions').from('legal_definitions').where({words:req.params.word}).then(word => {
     console.log(word);
     res.send(word);
 });

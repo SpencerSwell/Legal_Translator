@@ -6,8 +6,10 @@ import Button from './Button';
 import EnglishInput from './EnglishInput';
 import {LegalDefinition} from './LegalDefinition';
 
+var value = '';
+ class Main extends React.Component{
 
-export default class Main extends React.Component{
+
 
 	constructor(props){
         super(props);
@@ -20,13 +22,15 @@ export default class Main extends React.Component{
         
         event.preventDefault();
 
-        var value = document.getElementById('english').value;
+         value = document.getElementById('english').value;
         console.log(actions.fetchLegalDefinition);
-        props.dispatch(actions.fetchLegalDefinition(value))
+        this.props.dispatch(actions.fetchLegalDefinition(value));
+        return value;
     }
 
 
-    render(){
+    render(props){
+        
 
 	 	return(
 	 	    <div>
@@ -35,9 +39,19 @@ export default class Main extends React.Component{
                     <EnglishInput id="english"/>
                     <Button onClick={this.onClick}/>
                 </form>
-                <LegalDefinition/>
+                <LegalDefinition content={this.props.legalDefintion}/>
 	 	    </div>
 	 	);
     }
 }
+var fuckIt;
+function mapStateToProps (state, props) {
+   
+    return {
 
+        legalDefintion:state.legalDefintion
+    }
+}
+
+console.log(fuckIt);
+export default connect(mapStateToProps)(Main);
