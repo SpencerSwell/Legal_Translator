@@ -23,13 +23,20 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 
 app.get('/translate/:word', function(req,res) {
-
-knex.select('definitions').from('legal_definitions').where({words:req.params.word}).then(word => {
-    console.log(word);
-    res.send(word);
+    console.log(req.params.word);
+    knex
+  .select('word_synoyms', 'definitions')
+  .from('synoyms')
+  .leftOuterJoin('legal_definitions', 'synoyms.word_id', 'legal_definitions.ids')
+ .where('words', '=', req.params.word)
+        
+      
+  .then(synonyms => {
+        console.log(synonyms);
+        res.send(synonyms);
+    })
 });
 
-})
 
 function runServer() {
     return new Promise((resolve, reject) => {

@@ -39,7 +39,7 @@ var value = '';
                     <EnglishInput id="english"/>
                     <Button onClick={this.onClick}/>
                 </form>
-                <LegalDefinition word={this.props.Word} content = {this.props.legalDefinition} />
+                <LegalDefinition word={this.props.Word} synonyms={this.props.synonyms} legalDefinition = {this.props.legalDefinition} />
 	 	    </div>
 	 	);
     }
@@ -50,7 +50,8 @@ function mapStateToProps (state, props) {
     return {
 
         legalDefinition:state.legalDefinition,
-        Word:state.Word
+        Word:state.Word,
+        synonyms:state.synonyms
     }
 
 }

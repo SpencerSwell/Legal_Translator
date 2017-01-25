@@ -7,7 +7,8 @@
 		return {
 			type:FETCHED_LEGAL_DEFINITION,
 			legalDefinition:legalDefinition,
-			Word:Word
+			Word:Word,
+			synonyms:legalDefinition.word_synoyms
 		}
 
 	}
