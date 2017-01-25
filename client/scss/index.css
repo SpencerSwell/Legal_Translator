@@ -1,11 +1,43 @@
 @import url("https://fonts.googleapis.com/css?family=Cormorant|Vollkor");
-* {
-  color: red; }
+.englishInput {
+  width: 300px;
+  display: inline; }
 
 body {
-  background-color: #e4d2ba;
-  border: 4px solid black;
-  font-size: 28px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 15%;
+  margin-top: 20px;
+  width: 70%;
+  height: 30%;
+  background-color: #00968B;
+  font-size: 13px;
   font: "Cormorant", serif; }
+
+form {
+  margin-left: 20px;
+  margin-top: 35px; }
+
+input {
+  width: 300px;
+  height: 30px;
+  margin-right: 70%;
+  margin-left: 0px; }
+
+.trans {
+  float: right;
+  left: 600px;
+  position: absolute;
+  display: inline; }
+
+button {
+  padding: 10px; }
+
+p {
+  margin-top: 50px;
+  font-size: 25px; }
+
+dfn {
+  color: red; }
 
 /*# sourceMappingURL=index.css.map */

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Button (props) {
 
 return(
-	<div>
+	<div className="trans">
 	<button onClick={props.onClick}>Translate </button>
 	</div>
 );
