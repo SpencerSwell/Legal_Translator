@@ -9,3 +9,17 @@ insert into legal_translator (word, definition) values ('Person', 'Legal person 
 
 
 insert into legal_translator (word, definition) values ('Test', 'Testing');
+
+
+create table  if not exists users (
+  id serial primary key,
+  email text not null,
+  password text not null
+
+);
+
+insert into users(email,password) values('ABC','test');
+
+
+/*Query to get the count of users from table
+select count(*) from users where email='ABC';*/
