@@ -11,7 +11,7 @@ export  function LegalDefinition(props) {
 				<dfn id='Person'> {props.word + ':'} </dfn>
 
 				{props.legalDefinition}
-				{props.synonyms}
+				 <dfn id='Synonyms'> {props.synonyms} </dfn>
 			</p>
 		</div>
 
