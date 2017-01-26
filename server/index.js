@@ -3,12 +3,14 @@ const morgan = require('morgan');
 const passport = require('passport');
 const bodyParser =require('body-parser');
 const { BasicStrategy } = require('passport-http');
+const bcrypt = require('bcrypt');
+
 const knex = require('knex')({
     client: 'pg',
     connection: {
-        user: 'thinkful',
-        password:'thinkful',
-        database: 'dictionary'
+        user: 'postgres',
+        password:'Dev',
+        database: 'LEGALTRANSLATOR'
     }
 });
 
@@ -49,9 +51,9 @@ function hashPassword(password){
     .then(hash => hash);
 }
 
-app.post('/users',passport.authenticate('basic', { session: false }),(req,res)=>{
+app.post('/users',(req,res)=>{
   
- console.log(req+'request of post');
+ console.log(req.body.email+'request of post');
   const requiredFields=['email','password'];
   requiredFields.forEach(field =>{
     if (!(field in req.body)) {
@@ -60,29 +62,29 @@ app.post('/users',passport.authenticate('basic', { session: false }),(req,res)=>
         });
       }
     });
-  console.log(req+'request of post');
-  knex.select('count(*)')
-    .from('users')
+  console.log(req.body.email+'request of post');
+  knex('users').count('*')
     .where('email','=',req.body.email)
     .then(count => {
-      console.log(count+'count of users');
-      if (count > 0) {
-          return res.status(422).json({
-            message: 'User already taken'
-          });
+      let theCount = parseInt(count[0].count);
+      if (theCount > 0) {
+          return res.status(422).end();
         }
+        else {
         return hashPassword(req.body.password)
-    })
-    .then(hashPassword => {
-      knex('users')
-      .insert(
+    
 
-        {'email':req.body.email,'password':hashPassword}
-      )
-      console.log("Successfully inserted the value");
+    .then(hashPassword => {
+        console.log(hashPassword);
+      
+      return knex('users').insert
+
+        ({ email:req.body.email, password:hashPassword })
+      
     })
-    .then(res => {
-      res.send('Success');
+    .then(now => {
+        console.log(now);
+      res.send('success');
     })
     .catch(err => {
         console.error(err);
@@ -90,12 +92,35 @@ app.post('/users',passport.authenticate('basic', { session: false }),(req,res)=>
           error: 'Something went wrong'
         });
     });
-
+}
 
 
 });
 
+});
 
+app.post('/users/:email',passport.authenticate('basic', { session: false }), (req,res)=>{
+const requiredFields=['email','password'];
+  requiredFields.forEach(field =>{
+    if (!(field in req.body)) {
+        res.status(400).json({
+          error: `Missing "${field}" in request body`
+        });
+      }
+    });
+  knex('users').insert(
+  {'email':req.body.email,'password':req.body.password}
+  )
+  .then(_user=>{
+    res.send("Success");
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({
+      error: 'Something went wrong'
+    });
+ });
+})
 
 function runServer() {
     return new Promise((resolve, reject) => {
