@@ -84,7 +84,9 @@
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
+    "bcryptjs": "^2.4.0",
     "body-parser": "^1.16.0",
+    "dreamcatcher": "^0.1.2",
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
     "knex": "^0.12.6",

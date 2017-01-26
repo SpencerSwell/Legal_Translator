@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 const bodyParser =require('body-parser');
 const { BasicStrategy } = require('passport-http');
+const bcrypt = require('bcryptjs');
 const knex = require('knex')({
     client: 'pg',
     connection: {
@@ -21,14 +22,47 @@ const app = express();
 
 app.use(express.static(process.env.CLIENT_PATH));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+  knex('users').where({id}).first()
+    .then((user) => { done(null, user); })
+    .catch((err) => { done(err,null); });
+
+}); 
 app.use(morgan('common'));
 
-const strategy =new BasicStrategy(function(email,password){
 
+
+
+passport.use(new BasicStrategy(function(username, password, done) {
+    return dream.knex('user').where('username', username).then(function(results) {
+        if (results.length > 0 && results[0].hasOwnProperty('password')) {
+            return done(null, dream.passwordHash.verify(password, results[0].password));
+        }
+        return done(null, false);
+    });
+}));
+
+
+
+const strategy = new BasicStrategy(function(email,password,done){
+
+ return knex.select('email','password').from('users').where('email',email).then(function(results) {
+        if (results.length > 0 && results[0].hasOwnProperty('password')) {
+            return done(null, true);
+        }
+        return done(null, false);
+    });
 
 });
-passport.use(strategy);
 
+passport.use(strategy);
 
 app.get('/translate/:word', function(req,res) {
     console.log(req.params.word);
@@ -49,40 +83,47 @@ function hashPassword(password){
     .then(hash => hash);
 }
 
-app.post('/users',passport.authenticate('basic', { session: false }),(req,res)=>{
+app.get('/login',
+  passport.authenticate('basic', {session: false}),
+  function(req, res) {
+    res.json(req.user);
+});
+
+
+app.post('/users',(req,res)=>{
   
- console.log(req+'request of post');
+ console.log(req.body.email+'request of post');
   const requiredFields=['email','password'];
   requiredFields.forEach(field =>{
     if (!(field in req.body)) {
         res.status(400).json({
           error: `Missing "${field}" in request body`
-        });
+       });
       }
     });
-  console.log(req+'request of post');
-  knex.select('count(*)')
-    .from('users')
+  console.log(req.body.email+'request of post');
+  knex('users').count('*')
     .where('email','=',req.body.email)
     .then(count => {
-      console.log(count+'count of users');
-      if (count > 0) {
-          return res.status(422).json({
-            message: 'User already taken'
-          });
+      let theCount = parseInt(count[0].count);
+      if (theCount > 0) {
+          return res.status(422).end();
         }
+        else {
         return hashPassword(req.body.password)
-    })
-    .then(hashPassword => {
-      knex('users')
-      .insert(
+    
 
-        {'email':req.body.email,'password':hashPassword}
-      )
-      console.log("Successfully inserted the value");
+   .then(hashPassword => {
+        console.log(hashPassword);
+      
+      return knex('users').insert
+
+       ({ email:req.body.email, password:hashPassword })
+      
     })
-    .then(res => {
-      res.send('Success');
+    .then(now => {
+        console.log(now);
+      res.send('success');
     })
     .catch(err => {
         console.error(err);
@@ -90,12 +131,12 @@ app.post('/users',passport.authenticate('basic', { session: false }),(req,res)=>
           error: 'Something went wrong'
         });
     });
-
+}
 
 
 });
 
-
+});
 
 function runServer() {
     return new Promise((resolve, reject) => {
