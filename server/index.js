@@ -40,22 +40,25 @@ app.use(morgan('common'));
 
 
 
-passport.use(new BasicStrategy(function(username, password, done) {
-    return dream.knex('user').where('username', username).then(function(results) {
-        if (results.length > 0 && results[0].hasOwnProperty('password')) {
-            return done(null, dream.passwordHash.verify(password, results[0].password));
-        }
-        return done(null, false);
-    });
-}));
+// passport.use(new BasicStrategy(function(username, password, done) {
+//     return dream.knex('user').where('username', username).then(function(results) {
+//         if (results.length > 0 && results[0].hasOwnProperty('password')) {
+//             return done(null, dream.passwordHash.verify(password, results[0].password));
+//         }
+//         return done(null, false);
+//     });
+// }));
 
 
 
 const strategy = new BasicStrategy(function(email,password,done){
 
- return knex.select('email','password').from('users').where('email',email).then(function(results) {
+ return knex.select('email','password').from('users').where('email',email)
+        .then(function(results) {
+          
         if (results.length > 0 && results[0].hasOwnProperty('password')) {
-            return done(null, true);
+           
+            return done(null, bcrypt.compareSync(password, results[0].password));
         }
         return done(null, false);
     });
@@ -83,7 +86,7 @@ function hashPassword(password){
     .then(hash => hash);
 }
 
-app.get('/login',
+app.post('/login',
   passport.authenticate('basic', {session: false}),
   function(req, res) {
     res.json(req.user);
