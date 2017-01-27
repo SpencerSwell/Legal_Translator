@@ -1,23 +1,90 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant|Vollkor|Lobster');                                                                                                                                                                           
 $header-font: 'Lobster', cursive;
 $definition-font: 'Vollkorn', serif;
-$Cardstock-color: #00968B;
+$Background-color: #0F69BA;
+
+
+
+@media screen and (max-width:750px) {
+
+
+h1{ 
+	position:relative;
+	left:55px;
+	width:300px;
+	line-height: 1.3em;
+	font-family: $header-font;
+	font-size:2.0rem;
+}
 
 
 
 
 
+.englishInput{
+
+	display:inline;
+	width:100px;
+}
+
+#english{
+	height:50px;
+	width:250px;
+	margin-bottom:35px;
+}
+
+body{
+background-color:$Background-color;
+margin-left:15% ;
+margin-right:15%;
+margin-bottom:15%;
+margin-top:5px;
+width:inherit;
+height:30%;
 
 
 
+font-family: $definition-font;
+
+}
+
+button{
+
+	width:260px;
+	border-radius:5px;
+	height:55px;
+	margin-bottom:15px;
+}
+
+form{
+	position:relative;
+	width:100%;
+	left:55px;
+}
+
+div{ 
+
+width:100%; }
 
 
 
+p{
+	border:5px double black;
+}
+
+*{
+	padding:2%;
+}
 
 
+.definition{
+
+position:relative;
 
 
+}
 
+}
 
 
 
@@ -26,8 +93,9 @@ $Cardstock-color: #00968B;
 @media screen and( min-width: 750px) {
 #app{
 
-	margin-left:33%;
-	margin-right:33%; 
+	width:inherit;
+	position:relative;
+	left:280px; 
 }
 
 .englishInput{
@@ -38,15 +106,14 @@ $Cardstock-color: #00968B;
 
 body{
 
-
 margin-left:15% ;
 margin-right:15%;
 margin-bottom:15%;
 margin-top:20px;
-width:70%;
+width:inherit;
 height:30%;
 
-background-color:$Cardstock-color;
+background-color:$Background-color;
 
 font-family: $definition-font;
 
@@ -72,8 +139,9 @@ border-radius:5px;
 
 input {
 	width: 300px;
+	border-radius:8px;
 	height: 30px;
-	
+	font-size:1.7rem;
 }
 
 .trans {
@@ -98,7 +166,7 @@ p {
 
 dfn {
 
-	color:red;
+	color:#A31B22
 }
 
 
@@ -108,6 +176,7 @@ dfn {
 		right:320px;
 		bottom:120px;
 		padding:10px;
+		border-radius:5px;
 	}
 
 	}
