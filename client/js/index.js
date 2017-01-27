@@ -7,11 +7,12 @@ import Main from './components/Main';
 import store from './store';
 
 document.addEventListener("DOMContentLoaded", function(event) {
-ReactDOM.render(<Provider store= {store}>
+ReactDOM.render(
+	<Provider store= {store}>
 		<Main/>
 	</Provider>,
+	
 	document.getElementById('app')
-
 	);	
 
   });

@@ -9,30 +9,24 @@ import {LegalDefinition} from './LegalDefinition';
 var value = '';
  class Main extends React.Component{
 
-
-
-	constructor(props){
+    constructor(props){
         super(props);
 
         this.onClick = this.onClick.bind(this);
+    }
 
-	}
-
-    onClick(event,props) {
-        
+    //Dispatch call to async action to convert into definition
+    onClick(event,props){
         event.preventDefault();
 
-         value = document.getElementById('english').value;
-        console.log(actions.fetchLegalDefinition);
+        value = document.getElementById('english').value;
         this.props.dispatch(actions.fetchLegalDefinition(value));
-        return value;
+        return value
     }
 
 
     render(props){
-        
-
-	 	return(
+        return(
 	 	    <div>
                 <h1>Legal Word Translator: Get the legal definition about the word you want</h1>
                 <form action="#">
@@ -44,9 +38,9 @@ var value = '';
 	 	);
     }
 }
-var now;
+//Connect store to props
+
 function mapStateToProps (state, props) {
-    
     return {
 
         legalDefinition:state.legalDefinition,

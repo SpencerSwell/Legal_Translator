@@ -3,6 +3,27 @@ $header-font: 'Lobster', cursive;
 $definition-font: 'Vollkorn', serif;
 $Cardstock-color: #00968B;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and( min-width: 750px) {
 #app{
 
 	margin-left:33%;
@@ -34,7 +55,7 @@ font-family: $definition-font;
 h1{ 
 	position:relative;
 	right:80px;
-	width:400px;
+	width:700px;
 	line-height: 2.0em;
 	font-family: $header-font;
 	font-size:2.8em;
@@ -88,9 +109,5 @@ dfn {
 		bottom:120px;
 		padding:10px;
 	}
-
-	@media screen and (min-width:1470px) {
-
-		
 
 	}

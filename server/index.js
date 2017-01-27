@@ -2,65 +2,57 @@ const express = require('express');
 const morgan = require('morgan');
 const passport = require('passport');
 const bodyParser =require('body-parser');
-const { BasicStrategy } = require('passport-http');
 const bcrypt = require('bcryptjs');
-const knex = require('knex')({
-    client: 'pg',
-    connection: {
-        user: 'thinkful',
-        password:'thinkful',
-        database: 'dictionary'
-    }
-});
+
+const { BasicStrategy } = require('passport-http');
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
+//connect to database
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+        user: 'postgres',
+        password:'Dev',
+        database: 'LEGALTRANSLATOR'
+    }
+});
+
 const app = express();
 
+//Use the following middleware
 app.use(express.static(process.env.CLIENT_PATH));
 app.use(bodyParser.json());
 app.use(passport.initialize());
+app.use(morgan('common'));
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser( function( user, done) {
   done(null, user);
+  
+  //select the first user in the database that matches the id
   knex('users').where({id}).first()
     .then((user) => { done(null, user); })
-    .catch((err) => { done(err,null); });
+    .catch((err) => { done(err, null); });
 
 }); 
-app.use(morgan('common'));
 
-
-
-
-// passport.use(new BasicStrategy(function(username, password, done) {
-//     return dream.knex('user').where('username', username).then(function(results) {
-//         if (results.length > 0 && results[0].hasOwnProperty('password')) {
-//             return done(null, dream.passwordHash.verify(password, results[0].password));
-//         }
-//         return done(null, false);
-//     });
-// }));
-
-
-
-const strategy = new BasicStrategy(function(email,password,done){
-
+const strategy = new BasicStrategy(function(email, password, done){
+//select username and password and then compare the password
  return knex.select('email','password').from('users').where('email',email)
         .then(function(results) {
           
         if (results.length > 0 && results[0].hasOwnProperty('password')) {
            
-            return done(null, bcrypt.compareSync(password, results[0].password));
+            return done(null, bcrypt.compareSync(password, results[0].password))
         }
-        return done(null, false);
+          return done(null, false)
     });
 
 });
@@ -68,14 +60,12 @@ const strategy = new BasicStrategy(function(email,password,done){
 passport.use(strategy);
 
 app.get('/translate/:word', function(req,res) {
-    console.log(req.params.word);
-  knex
-  .select('word_synoyms', 'definitions')
+  knex.select('word_synoyms', 'definitions')
   .from('synoyms')
   .leftOuterJoin('legal_definitions', 'synoyms.word_id', 'legal_definitions.ids')
   .where('words', '=', req.params.word)    
+  
   .then(synonyms => {
-        console.log(synonyms);
         res.send(synonyms);
     })
 });
@@ -86,17 +76,15 @@ function hashPassword(password){
     .then(hash => hash);
 }
 
-app.post('/login',
-  passport.authenticate('basic', {session: false}),
-  function(req, res) {
+app.post('/login/:email',
+  passport.authenticate('basic', {session: false}), function(req, res) {
     res.json(req.user);
 });
 
 
-app.post('/users',(req,res)=>{
-  
- console.log(req.body.email+'request of post');
+app.post('/adduser', function (req,res) {
   const requiredFields=['email','password'];
+  
   requiredFields.forEach(field =>{
     if (!(field in req.body)) {
         res.status(400).json({
@@ -104,41 +92,38 @@ app.post('/users',(req,res)=>{
        });
       }
     });
-  console.log(req.body.email+'request of post');
-  knex('users').count('*')
-    .where('email','=',req.body.email)
+
+  knex('users').count('*').where('email','=',req.body.email)
     .then(count => {
+      
       let theCount = parseInt(count[0].count);
+     
       if (theCount > 0) {
           return res.status(422).end();
         }
+      
         else {
         return hashPassword(req.body.password)
+        .then(hashPassword => {
+          return knex('users').insert
+
+          ({ email:req.body.email, password:hashPassword })
+      
+        })
     
-
-   .then(hashPassword => {
-        console.log(hashPassword);
-      
-      return knex('users').insert
-
-       ({ email:req.body.email, password:hashPassword })
-      
-    })
     .then(now => {
-        console.log(now);
       res.send('success');
     })
+    
     .catch(err => {
-        console.error(err);
-        res.status(500).json({
-          error: 'Something went wrong'
-        });
+      res.status(500).json({
+      error: 'Something went wrong'
     });
+  });
 }
 
 
-});
-
+  });
 });
 
 function runServer() {
