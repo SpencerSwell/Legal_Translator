@@ -28,7 +28,7 @@ var value = '';
     render(props){
         return(
 	 	    <div>
-                <h1>Legal Word Translator: Get the legal definition of the word you want</h1>
+                <h1>Legal Word Translator: Get the legal definition of the word you want.</h1>
                 <form action="#">
                     <EnglishInput id="english"/>
                     <Button onClick={this.onClick}/>
