@@ -4,7 +4,7 @@ export const FETCHED_LEGAL_DEFINITION = "FETCHED_LEGAL_DEFINITION";
 			type:FETCHED_LEGAL_DEFINITION,
 			legalDefinition:legalDefinition,
 			Word:Word,
-			synonyms:legalDefinition.word_synoyms
+			synonyms:legalDefinition.word_synonyms
 		}
 	};
 	

@@ -10,13 +10,13 @@ const initialState = {
 export default function mainReducer (state = initialState, action) {
 	
 	if(action.type === actions.FETCHED_LEGAL_DEFINITION) {
-		
+		console.log(action.legalDefinition[0]);
 		if(action.legalDefinition.length === 0) {
 			return Object.assign({}, state, {legalDefinition:"Try another word"});
 		};
 		
-		return Object.assign({}, state, {legalDefinition:action.legalDefinition[0].definitions,
-		 Word:action.Word, synonyms:action.legalDefinition[0].word_synoyms})
+		return Object.assign({}, state, {legalDefinition:action.legalDefinition[0].definition,
+		 Word:action.Word.toUpperCase(), synonyms:action.legalDefinition[0].synonyms})
 		}
 	return state;
 }

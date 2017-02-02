@@ -13,7 +13,7 @@ const knex = require('knex')({
     connection: {
         user: 'postgres',
         password:'Dev',
-        database: 'LEGALTRANSLATOR'
+        database: 'Translator'
     }
 });
 
@@ -24,10 +24,13 @@ app.use(express.static(process.env.CLIENT_PATH));
 app.use(morgan('common'));
   
 app.get('/translate/:word', function(req,res) {
-  knex.select('word_synoyms', 'definitions')
-  .from('synoyms')
-  .leftOuterJoin('legal_definitions', 'synoyms.word_id', 'legal_definitions.ids')
-  .where('words', '=', req.params.word)    
+  let upperCase = req.params.word.toUpperCase();
+  console.log(upperCase);
+
+  knex.select('synonyms', 'definition')
+  .from('synonyms')
+  .leftOuterJoin('legal_definitions', 'synonyms.word_id', 'legal_definitions.id')
+  .where('word', '=', upperCase)    
   
   .then(synonyms => {
         res.send(synonyms);

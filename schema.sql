@@ -1,82 +1,45 @@
-create table if not exists legal_translator (
+create table if not exists legal_definitions (
     id serial primary key,
     word text not null,
     definition text not null
 );
 
 
-insert into legal_translator (word, definition) values ('Person', 'Legal person refers to a non-human entity that is treated as a person for limited legal purposes corporations');
+insert into legal_definitions (word, definition) values ('PERSON', 'Legal person refers to a non-human entity that is treated as a person for limited legal purposes corporations');
+
+insert into legal_definitions (word, definition) values ('CITIZEN', ' A person who by place of birth, nationality of one or both parents,
+	 or by going through the naturalization process has sworn loyalty to a nation.');
+
+insert into legal_definitions (word, definition) values ('ASSAULT', 'An assault is carried out by a threat of bodily harm
+	 coupled with an apparent, present ability to cause the harm.');
+
+insert into legal_definitions (word, definition) values ('HOUSE', 'A place for the habitation and dwelling of man.
+	 This word has several significations, as it is applied to different things');
+
+insert into legal_definitions (word, definition) values ('CORPORATION', ' an organization formed with state governmental approval
+ to act as an artificial person to carry on business (or other activities),
+  which can sue or be sued, and (unless it is non-profit) can issue shares
+   of stock to raise funds with which to start a business or increase its capital.
+    One benefit is that a corporations lack of liability for damages or debts is limited to
+     its assets, so the shareholders and officers are protected from personal claims,
+      unless they commit fraud.');
 
 
-insert into legal_translator (word, definition) values ('Test', 'Testing');
+create table if not exists synonyms (
 
+id serial primary key,
+word_id integer references legal_definitions not null,
+synonyms text not null 
 
-create table  if not exists users (
-  id serial primary key,
-  email text not null,
-  password text not null
 
 );
 
-insert into users(email,password) values('ABC','test');
+insert into synonyms (word_id, synonyms) values (1,'Fellow, Individual, Mortal Body, Human Being');
 
+insert into synonyms (word_id, synonyms) values (2,'Habitant, Resident, Denizen, inmate');
 
-/*Query to get the count of users from table
-select count(*) from users where email='ABC';*/
+insert into synonyms (word_id, synonyms) values (3,'Aggression, Intrusion, Aggravated Assault, Battery');
 
+insert into synonyms (word_id, synonyms) values (4,'Abode, Property, Residence, Domicile');
 
-insert into users(email,password) values();
-
-
-	
-
-
-
-
--- 	app.post('/users',(req,res)=>{
-  
---  console.log(req.body.email+'request of post');
---   const requiredFields=['email','password'];
---   requiredFields.forEach(field =>{
---     if (!(field in req.body)) {
---         res.status(400).json({
---           error: `Missing "${field}" in request body`
---        });
---       }
---     });
---   console.log(req.body.email+'request of post');
---   knex('users').count('*')
---     .where('email','=',req.body.email)
---     .then(count => {
---       let theCount = parseInt(count[0].count);
---       if (theCount > 0) {
---           return res.status(422).end();
---         }
---         else {
---         return hashPassword(req.body.password)
-    
-
---    .then(hashPassword => {
---         console.log(hashPassword);
-      
---       return knex('users').insert
-
---        ({ email:req.body.email, password:hashPassword })
-      
---     })
---     .then(now => {
---         console.log(now);
---       res.send('success');
---     })
---     .catch(err => {
---         console.error(err);
---         res.status(500).json({
---           error: 'Something went wrong'
---         });
---     });
--- }
-
-
--- });
-
--- });
+insert into synonyms (word_id, synonyms) values (5,'Company, Artifical Person, Legal Fiction , Business Trust');
