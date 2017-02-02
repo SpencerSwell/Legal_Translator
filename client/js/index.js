@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import * as actions from './action/translateAction';
-import Main from './components/Main';
+import Main from './Components/Main';
 import store from './store';
 
 document.addEventListener("DOMContentLoaded", function(event) {
