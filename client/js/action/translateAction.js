@@ -11,7 +11,7 @@ export const FETCHED_LEGAL_DEFINITION = "FETCHED_LEGAL_DEFINITION";
 //dispatch synchronous action when completed
 export function fetchLegalDefinition(englishWord) {
 	return function(dispatch) {
-	const url = new URL ('http://localhost:8080/translate/'+ englishWord);
+	const url = '/translate/'+ englishWord;
 
 	return fetch(url).then(response => {
 			

@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 
+
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
 
@@ -11,11 +12,22 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 const knex = require('knex')({
     client: 'pg',
     connection: {
-        user: 'postgres',
-        password:'Dev',
-        database: 'Translator'
+        host:'babar.elephantsql.com',
+        port:5432,
+        ssl:true,
+        user: 'fzetzpvm',
+        password:'zG5LFtyHUWHTi4vQc-MZ8RTnBvH4uJf2',
+        database:'fzetzpvm',
+        url: 'postgres://fzetzpvm:zG5LFtyHUWHTi4vQc-MZ8RTnBvH4uJf2@babar.elephantsql.com:5432/fzetzpvm',
+        
     }
 });
+
+if(knex) {
+  console.log("Connected!");
+} else {
+  console.log("Connection Failed");
+}
 
 const app = express();
 
