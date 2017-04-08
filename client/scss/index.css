@@ -1,63 +1,37 @@
-@import url("https://fonts.googleapis.com/css?family=Cormorant|Vollkor|Lobster");
-#app {
-  margin-left: 33%;
-  margin-right: 33%; }
-
-.englishInput {
-  width: 300px;
-  display: inline; }
-
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600");
 body {
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-bottom: 15%;
-  margin-top: 20px;
-  width: 70%;
-  height: 30%;
-  background-color: #00968B;
-  font-family: "Vollkorn", serif; }
+  background-color: #F7F7F2;
+  font-family: "Fira Sans", sans-serif;
+  text-align: center;
+  color: #261C15; }
 
 h1 {
-  position: relative;
-  right: 80px;
-  width: 700px;
-  line-height: 2.0em;
-  font-family: "Lobster", cursive;
-  font-size: 2.8em; }
+  font-family: "Fira Sans", sans-serif;
+  font-size: 2.0em; }
 
 form {
-  position: relative;
-  left: -50px;
-  margin-top: 35px;
-  border-radius: 5px; }
+  min-width: 100px;
+  min-height: 60px; }
 
 input {
-  width: 300px;
-  height: 30px; }
-
-.trans {
-  float: right;
-  top: 155px;
-  left: 750px;
-  position: absolute;
-  display: inline; }
+  min-width: 150px;
+  min-height: 30px;
+  font-size: 25px; }
 
 p {
-  position: relative;
-  right: 80px;
-  width: 500px;
-  margin-top: 15%;
-  font-size: 2.0em;
-  border: 5px double black; }
+  font-size: 1.5em;
+  max-width: 75%;
+  text-align: center;
+  margin-left: 25%;
+  margin-right: 25%; }
 
 dfn {
-  color: red; }
+  color: #F05D23;
+  font-size: 1.0em; }
 
-button {
-  position: absolute;
-  display: inline;
-  right: 320px;
-  bottom: 120px;
-  padding: 10px; }
+.trans > button {
+  min-width: 318px;
+  min-height: 60px;
+  font-size: 1.2em; }
 
 /*# sourceMappingURL=index.css.map */

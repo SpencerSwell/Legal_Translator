@@ -1,182 +1,55 @@
-@import url('https://fonts.googleapis.com/css?family=Cormorant|Vollkor|Lobster');                                                                                                                                                                           
-$header-font: 'Lobster', cursive;
-$definition-font: 'Vollkorn', serif;
-$Background-color: #0F69BA;
-
-
-
-@media screen and (max-width:750px) {
-
-
-h1{ 
-	position:relative;
-	left:55px;
-	width:300px;
-	line-height: 1.3em;
-	font-family: $header-font;
-	font-size:2.0rem;
-}
-
-
-
-
-
-.englishInput{
-
-	display:inline;
-	width:100px;
-}
-
-#english{
-	height:50px;
-	width:250px;
-	margin-bottom:35px;
-}
-
-body{
-background-color:$Background-color;
-margin-left:15% ;
-margin-right:15%;
-margin-bottom:15%;
-margin-top:5px;
-width:inherit;
-height:30%;
-
-
-
-font-family: $definition-font;
-
-}
-
-button{
-
-	width:260px;
-	border-radius:5px;
-	height:55px;
-	margin-bottom:15px;
-}
-
-form{
-	position:relative;
-	width:100%;
-	left:55px;
-}
-
-div{ 
-
-width:100%; }
-
-
-
-p{
-	border:5px double black;
-}
-
-*{
-	padding:2%;
-}
-
-
-.definition{
-
-position:relative;
-
-
-}
-
-}
-
-
-
-
-
-@media screen and( min-width: 750px) {
-#app{
-
-	width:inherit;
-	position:relative;
-	left:280px; 
-}
-
-.englishInput{
-	width:300px;
-	display:inline;
-}
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600');                                                                                                                                       
+$header-font: 'Fira Sans', sans-serif;
+$definition-font: 'Fira Sans', sans-serif;
+$Background-color: #F7F7F2;
+$Font-color: #261C15;
 
 
 body{
-
-margin-left:15% ;
-margin-right:15%;
-margin-bottom:15%;
-margin-top:20px;
-width:inherit;
-height:30%;
 
 background-color:$Background-color;
 
 font-family: $definition-font;
 
+text-align:center;
+
+color:$Font-color;
+
+
 }
 
 h1{ 
-	position:relative;
-	right:80px;
-	width:700px;
-	line-height: 2.0em;
 	font-family: $header-font;
-	font-size:2.8em;
+	font-size:2.0em;
 }
-
 
 form {
-position: relative;
-left:-50px;
-margin-top: 35px;
-border-radius:5px;
-
+	min-width:100px;
+	min-height:60px;
 }
 
 input {
-	width: 300px;
-	border-radius:8px;
-	height: 30px;
-	font-size:1.7rem;
+	min-width:150px;
+	min-height:30px;
+	font-size:25px;
 }
 
-.trans {
-	float:right;
-	top:155px;
-	left:750px;
-	position:absolute;
-	display:inline;
-	
-}
-
-
-
-p {
-	position:relative;
-	right:80px;
-	width:450px;
-	margin-top:5%;
-	font-size:1.7em;
-	border:5px double black;
+p{
+	font-size:1.5em;
+	max-width:75%;
+	text-align: center;
+	margin-left:25%;
+	margin-right: 25%;
 }
 
 dfn {
-
-	color:#A31B22
+	color:#F05D23;
+	font-size:1.0em;
 }
 
 
-	button {
-		position:absolute;
-		display:inline;
-		right:320px;
-		bottom:120px;
-		padding:10px;
-		border-radius:5px;
-	}
-
-	}
+.trans> button {
+	min-width:318px;
+	min-height:60px;
+	font-size:1.2em;
+}
