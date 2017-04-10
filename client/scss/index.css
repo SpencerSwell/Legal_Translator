@@ -1,63 +1,118 @@
 @import url("https://fonts.googleapis.com/css?family=Cormorant|Vollkor|Lobster");
-#app {
-  margin-left: 33%;
-  margin-right: 33%; }
+@media screen and (max-width: 750px) {
+  h1 {
+    position: relative;
+    left: 55px;
+    width: 300px;
+    line-height: 1.3em;
+    font-family: "Lobster", cursive;
+    font-size: 2.0rem; }
 
-.englishInput {
-  width: 300px;
-  display: inline; }
+  .englishInput {
+    display: inline;
+    width: 100px; }
 
-body {
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-bottom: 15%;
-  margin-top: 20px;
-  width: 70%;
-  height: 30%;
-  background-color: #00968B;
-  font-family: "Vollkorn", serif; }
+  #english {
+    height: 50px;
+    width: 250px;
+    margin-bottom: 35px; }
 
-h1 {
-  position: relative;
-  right: 80px;
-  width: 700px;
-  line-height: 2.0em;
-  font-family: "Lobster", cursive;
-  font-size: 2.8em; }
+  body {
+    background-color: #0F69BA;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 15%;
+    margin-top: 5px;
+    width: inherit;
+    height: 30%;
+    font-family: "Vollkorn", serif; }
 
-form {
-  position: relative;
-  left: -50px;
-  margin-top: 35px;
-  border-radius: 5px; }
+  button {
+    width: 260px;
+    border-radius: 5px;
+    height: 55px;
+    margin-bottom: 15px; }
 
-input {
-  width: 300px;
-  height: 30px; }
+  form {
+    position: relative;
+    width: 100%;
+    left: 55px; }
 
-.trans {
-  float: right;
-  top: 155px;
-  left: 750px;
-  position: absolute;
-  display: inline; }
+  div {
+    width: 100%; }
 
-p {
-  position: relative;
-  right: 80px;
-  width: 500px;
-  margin-top: 15%;
-  font-size: 2.0em;
-  border: 5px double black; }
+  p {
+    border: 5px double black; }
 
-dfn {
-  color: red; }
+  * {
+    padding: 2%; }
 
-button {
-  position: absolute;
-  display: inline;
-  right: 320px;
-  bottom: 120px;
-  padding: 10px; }
+  .definition {
+    position: relative; } }
+@media screen and (min-width: 750px) {
+  #app {
+    width: inherit;
+    position: relative;
+    left: 280px; }
+
+  .englishInput {
+    width: 300px;
+    display: inline; }
+
+  body {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 15%;
+    margin-top: 20px;
+    width: inherit;
+    height: 30%;
+    background-color: #0F69BA;
+    font-family: "Vollkorn", serif; }
+
+  h1 {
+    position: relative;
+    right: 80px;
+    width: 700px;
+    line-height: 2.0em;
+    font-family: "Lobster", cursive;
+    font-size: 2.8em; }
+
+  form {
+    position: relative;
+    left: -50px;
+    margin-top: 35px;
+    border-radius: 5px; }
+
+  input {
+    width: 300px;
+    border-radius: 8px;
+    height: 30px;
+    font-size: 1.7rem; }
+
+  .trans {
+    float: right;
+    top: 155px;
+    left: 750px;
+    position: absolute;
+    display: inline; }
+
+  p {
+    position: relative;
+    right: 80px;
+    width: 500px;
+    margin-top: 15%;
+    font-size: 2.0em;
+    border: 5px double black; }
+
+  dfn {
+    color: #A31B22; }
+
+  button {
+    position: absolute;
+    display: inline;
+    right: 320px;
+    bottom: 120px;
+    padding: 10px;
+    border-radius: 5px; } }
 
 /*# sourceMappingURL=index.css.map */
