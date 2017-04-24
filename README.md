@@ -1,9 +1,9 @@
 # Legal Translator
 
-Translate your Spoken word into Legal Jargon
+To enable a citizen without the ability to pay a lawyer the tools to slowly create a phrase the suits their purpouse for dealing with the servants of the law.
 
-to run first clone the repo: git clone https://github.com/SpencerSwell/Legal_Translator
+It takes an english word and then translates it to the user in Legalese.
 
-then cd into the project directory and run the command: npm run dev
+It was built with HTML,SASS,React.js,Node, Express, PostgreSQL, and KNEX.js in a week.
 
-As of now though it will not work for you because the database is on my machine. ~SS 
+Built By Anitha Boddu and Spencer Southwell as part of Thinkful's fulltime bootcamp program.
